@@ -1,0 +1,60 @@
+# Find First and Last Position of Element in Sorted Array
+#approach 2: recursive method
+# time elapsed with 1 millon iterations: 13,223 seconds
+
+def searchRange(nums, target):
+    def search_left(nums, target, l, r):
+        if l > r:
+            return l
+        
+        m = (l + r) // 2
+        if nums[m] >= target:
+            return search_left(nums, target, l, m - 1)
+        else:
+            return search_left(nums, target, m + 1, r)
+
+    def search_right(nums, target, l, r):
+        if l > r:
+            return r
+        
+        m = (l + r) // 2
+        if nums[m] <= target:
+            return search_right(nums, target, m + 1, r)
+        else:
+            return search_right(nums, target, l, m - 1)
+
+    l = search_left(nums, target, 0, len(nums) - 1)
+    if l == len(nums) or nums[l] != target:
+        return [-1, -1]
+    r = search_right(nums, target, 0, len(nums) - 1)
+    return [l, r]
+
+import time
+
+# get the start time
+st = time.time()
+
+for i in range(1000000):
+    
+    nums = [5,7,7,7,7,7,8,8,10,11]  
+    target = 8
+    searchRange(nums, target)  #answer = [6,7]
+
+    nums = []
+    target = 1
+    searchRange(nums,target)  #answer = [-1,-1]
+
+    nums = [5,7,7,7,7,7,8,8,10,11]
+    target = 12
+    searchRange(nums,target) #answer = [-1,-1]
+
+    nums = [5,7,7,8,8,10]
+    target = 8
+    searchRange(nums, target)  #answer = [3,4]
+    
+# get the end time
+et = time.time()
+
+# get the execution time
+elapsed_time = (et - st)*1000.000000000
+print('Execution time:', elapsed_time, 'milliseconds')
