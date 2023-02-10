@@ -56,7 +56,7 @@ APPROACH 1 iterative method
 
 10. After finding the left and right boundaries of the target in the array, the code checks if the target was found in the array. If the target was not found, the function returns [-1, -1]. Otherwise, the function returns the list [l, r], which contains the starting and ending position of the target in the array.
 
-The code for iterative method(approach 1) is here[code1]
+The code for iterative method(approach 1) is [here](code1)
 
 APPROACH 2: RECURSIVE METHOD
 
